@@ -1,0 +1,25 @@
+# docker-compose.override.yml
+# Allows us to attach to diffrent volumes if need be (no need to share volumes)
+version: '3.7'
+services:
+  db:
+    volumes:
+      #- ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      #- ./database/init.sql:/docker-entrypoint-initdb.d/
+      - ./database/data:/var/lib/mysql
+      #- ./mysql:/var/lib/mysql
+  php:
+    volumes:
+      - ./apps/my-symfony-app/:/var/www
+      #- ./:/var/www/html/symfony:cached
+      #- ./src:/var/www/html/symfony:cached
+      - ./logs:/var/log
+  web:
+    volumes:
+        - ./apps/my-symfony-app/public/:/var/www
+        - ./build/nginx/nginx.conf:/etc/nginx/nginx.conf
+        - ./build/nginx/sites-enabled/:/etc/nginx/sites-available
+        - ./build/nginx/conf.d/:/etc/nginx/conf.d
+        #- ./:/var/www/html/symfony:cached
+        #- ./src:/var/www/html/symfony:cached
+        - ./logs:/var/log/nginx
