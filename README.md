@@ -1,5 +1,5 @@
 # symfonycontainer
-Docker build project that provides you with Symfony 5, PHP 7.2, Nginx and Mariadb. It`s ready to run your app.
+Docker build project that provides you with Symfony 5, PHP, Nginx and Mariadb. It`s ready to run your app.
 
 1) Clone the Repo
 2) Run: docker-compose build
